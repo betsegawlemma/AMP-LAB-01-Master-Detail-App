@@ -7,4 +7,4 @@ In this laboratory session students create List/Detail android application using
 
 The topics covered in this session includes:
 
-Creating UI layouts using Constraint Layout; Using the UI editor provided in android studio version 3.3 to easily create UI components; Using Intent to start new Activity; Pass data between activities using Intent; Using RecyclerView to create list of items
+Creating UI layouts using Constraint Layout; Using the UI editor provided in android studio version 3.3 to easily create UI components; Using Intent to start new Activity; Pass data between activities using Intent; Using RecyclerView to create list of items; Kotlin concepts such as lateinit and find collection method
