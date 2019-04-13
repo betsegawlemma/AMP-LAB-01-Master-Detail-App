@@ -1,13 +1,14 @@
 package et.edu.aait.listdetailapplication
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class CourseAdapter(context: Context):RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
+class CourseAdapter(val context: Context):RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
     private val courses = listOf(
 
@@ -20,6 +21,24 @@ class CourseAdapter(context: Context):RecyclerView.Adapter<CourseAdapter.CourseV
 
         val inflater = LayoutInflater.from(parent.context)
         val recyclerViewItem = inflater.inflate(R.layout.recycler_view_item, parent, false)
+
+        recyclerViewItem.setOnClickListener {
+
+            val courseDetailIntent = Intent(context, CourseDetailActivity::class.java)
+             // Extract the code text part of the clicked course
+            val courseCode = it.list_code_textview.text
+            // Extract the full course information from the courses list using the courseCode
+            val course = courses.find { it.code == courseCode }
+            // Pass the course detail information to the intent
+            if(course != null) {
+                courseDetailIntent.putExtra("code", course.code)
+                courseDetailIntent.putExtra("title", course.title)
+                courseDetailIntent.putExtra("ects", course.ects)
+                courseDetailIntent.putExtra("description", course.description)
+            }
+
+            context.startActivity(courseDetailIntent)
+        }
 
         return CourseViewHolder(recyclerViewItem)
     }
